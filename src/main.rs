@@ -7,38 +7,11 @@ extern crate failure_derive;
 #[macro_use]
 extern crate serde_derive;
 
-use github_rs::StatusCode;
-use github_rs::client::{Executor, Github};
-use serde_json::Value;
+mod github;
+
+use github_rs::client::Github;
 use failure::Error;
-
-trait TryExecute: Executor {
-    fn try_execute(self) -> Result<Value, Error>
-    where
-        Self: Sized,
-    {
-        #[derive(Deserialize)]
-        struct GitError {
-            message: String,
-        }
-
-        // TODO: Replace format_err!() macro calls with proper non-string custom error handling
-        match self.execute::<Value>() {
-            Ok((_, StatusCode::Ok, Some(response))) => Ok(response),
-            Ok((_, _, Some(response))) => {
-                serde_json::from_value::<GitError>(response)
-                    .map_err(|err| format_err!("Failed to parse error response: {}", err))
-                    .and_then(|error| Err(format_err!("{}", error.message)))
-            }
-            Ok((_, _, None)) => Err(format_err!(
-                "Received error response from github with no message"
-            )),
-            Err(err) => Err(format_err!("Failed to execute request: {}", err)),
-        }
-    }
-}
-
-impl<'a> TryExecute for ::github_rs::search::get::SearchUsersQ<'a> {}
+use github::try::TryExecute;
 
 #[derive(Deserialize)]
 struct User {
@@ -60,6 +33,8 @@ fn get_user(email: &str) -> Result<String, Error> {
     Ok(
         serde_json::from_value::<User>(search?)?.items[0]
             .login
+            // clone so that I'm not sending a reference (can't be moved out of index, so
+            // cloning/references are the only way to do this)
             .clone(),
     )
 }
