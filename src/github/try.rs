@@ -1,8 +1,6 @@
-extern crate serde_json;
-
 use github_rs::StatusCode;
 use github_rs::client::Executor;
-use serde_json::Value;
+use serde_json::{Value, from_value};
 use failure::Error;
 use github_rs::*;
 
@@ -20,7 +18,7 @@ pub trait TryExecute: Executor {
         match self.execute::<Value>() {
             Ok((_, StatusCode::Ok, Some(response))) => Ok(response),
             Ok((_, _, Some(response))) => {
-                serde_json::from_value::<GitError>(response)
+                from_value::<GitError>(response)
                     .map_err(|err| format_err!("Failed to parse error response: {}", err))
                     .and_then(|error| Err(format_err!("{}", error.message)))
             }
