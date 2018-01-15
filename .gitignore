@@ -1,3 +1,6 @@
-
+# Ignore rust development files (the non-source code kind)
 /target/
 **/*.rs.bk
+
+# Ignore editor prefences
+/.vscode
