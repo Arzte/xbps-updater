@@ -13,7 +13,7 @@ struct Items {
 }
 
 pub fn get_user(email: &str) -> Result<String, Error> {
-    let client = Github::new(&::std::env::var("GITHUB_TOKEN").expect("token")).unwrap();
+    let client = Github::new(&::std::env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN enviroment variable not set correctly")).unwrap();
     let search = client
         .get()
         .search()
