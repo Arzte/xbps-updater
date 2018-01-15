@@ -25,4 +25,6 @@ fn run() -> Result<(), Box<Error>> {
         "{}",
         get_user("Vaelatern@gmail.com").unwrap_or("Error getting email.".to_owned())
     );
+    println!("{}", check_for_updates("chromium-widevine").unwrap_or("Error checking for updates".to_owned()));
+    Ok(())
 }
