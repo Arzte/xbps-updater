@@ -156,7 +156,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "github-rs"
 version = "0.6.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "error-chain 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -672,12 +671,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "xbps-updater"
+name = "xbps_updater"
 version = "0.1.0"
 dependencies = [
  "failure 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure_derive 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "github-rs 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "github-rs 0.6.1",
  "serde 1.0.27 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_derive 1.0.27 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.9 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -705,7 +704,6 @@ dependencies = [
 "checksum futures 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)" = "118b49cac82e04121117cbd3121ede3147e885627d82c4546b87c702debb90c1"
 "checksum futures-cpupool 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "ab90cde24b3319636588d0c35fe03b1333857621051837ed769faefb4c2162e4"
 "checksum gcc 0.3.54 (registry+https://github.com/rust-lang/crates.io-index)" = "5e33ec290da0d127825013597dbdfc28bee4964690c7ce1166cbc2a7bd08b1bb"
-"checksum github-rs 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)" = "e10455434d6396473dbf0d9a4fee179210ec4fbe6bd2cedaeb15418a4ce8bd1e"
 "checksum httparse 1.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "af2f2dd97457e8fb1ae7c5a420db346af389926e36f43768b96f101546b04a07"
 "checksum hyper 0.11.13 (registry+https://github.com/rust-lang/crates.io-index)" = "7af072bf3403369fd4339d550a7612c94ce681a22ca3a5455e68983fa4b3648c"
 "checksum hyper-rustls 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1d6cdc1751771a14b8175764394f025e309a28c825ed9eaf97fa62bb831dc8c5"
