@@ -1,6 +1,6 @@
 use failure::Error;
 
-pub fn check_for_updates(pkg: &str) -> Result<String, Error> {
+pub fn check_update(pkg: &str) -> Result<String, Error> {
     let output = ::std::process::Command::new("/home/doctors/git/void-packages/xbps-src")
             .arg("update-check")
             .arg(pkg)
@@ -15,4 +15,8 @@ pub fn check_for_updates(pkg: &str) -> Result<String, Error> {
     } else {
         bail!("Unknown ./xbps-src output".to_owned());
     }
+}
+
+pub update_package(pkg: &str) -> Result<String, Error> {
+    check_update(pkg);
 }

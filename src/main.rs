@@ -11,7 +11,7 @@ mod github;
 mod update;
 
 use failure::Error;
-use update::check_for_updates;
+use update::check_update;
 use github::user::get_user;
 
 fn main() {
@@ -21,10 +21,8 @@ fn main() {
 }
 
 fn run() -> Result<(), Box<Error>> {
-    println!(
-        "{}",
-        get_user("Vaelatern@gmail.com").unwrap_or("Error getting email.".to_owned())
-    );
-    println!("{}", check_for_updates("chromium-widevine").unwrap_or("Error checking for updates".to_owned()));
+    // println!("{}",get_user("Vaelatern@gmail.com").unwrap_or("Error getting email.".to_owned()));
+    // println!("{}", check_update("chromium-widevine").unwrap_or("Error checking for updates".to_owned()));
+    println!("done!");
     Ok(())
 }
