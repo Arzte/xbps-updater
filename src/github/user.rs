@@ -1,7 +1,10 @@
+extern crate dotenv;
+
 use github::try::TryExecute;
 use github_rs::client::Github;
 use serde_json::from_value;
 use failure::Error;
+use self::dotenv::dotenv;
 
 #[derive(Deserialize)]
 struct User {
@@ -13,6 +16,8 @@ struct Items {
 }
 
 pub fn get_user(email: &str) -> Result<String, Error> {
+    dotenv().ok();
+
     let client = Github::new(&::std::env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN enviroment variable not set correctly")).unwrap();
     let search = client
         .get()

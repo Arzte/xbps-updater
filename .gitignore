@@ -4,3 +4,6 @@
 
 # Ignore editor prefences
 /.vscode
+
+# Ignore env file
+.env
