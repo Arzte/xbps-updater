@@ -20,7 +20,7 @@ fn main() {
     }
 }
 
-fn run() -> Result<(), Box<Error>> {
+fn run() -> Result<(), Error> {
     // println!("{}",get_user("Vaelatern@gmail.com").unwrap_or("Error getting email.".to_owned()));
     // println!("{}", check_update("chromium-widevine").unwrap_or("Error checking for updates".to_owned()));
     println!("done!");
