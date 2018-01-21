@@ -19,15 +19,12 @@ pub fn check_update(pkg: &str) -> Result<String, xbps_src_error> {
     let output_stdout = String::from_utf8_lossy(&output.stdout).to_string();
 
     if output_stdout.contains("->") {
-        return Ok(output_stdout.split(" ").last().unwrap().split("-").last().unwrap().to_owned());
-    // TODO: Properly check output to see if no update was needed/Or no update was found/Or other error
-    } else if output_stdout.is_empty() {
-        return Ok("".to_owned())
+        Ok(output_stdout.split(" ").last().unwrap().split("-").last().unwrap().to_owned())
     } else {
         match output_stderr.as_ref() {
-            "NO VERSION found for" => return Err(xbps_src_error::no_version(output_stderr)),
-            "" => return Err(xbps_src_error::latest_version),
-            _ => return Err(xbps_src_error::unknown_error(output_stderr)),
+            "NO VERSION found for" => Err(xbps_src_error::no_version(output_stderr)),
+            "" => Err(xbps_src_error::latest_version),
+            _ => Err(xbps_src_error::unknown_error(output_stderr)),
     }
 }
 }
